@@ -11,13 +11,18 @@ export const ResultContextProvider = ({children}) =>{
     const getResults = async (type) =>{
         setIsLoading(true);
         const response = await fetch(`${baseUrl}${type}`,{
+            method: 'GET',
+            headers: {
             'X-User-Agent': 'desktop',
             'X-Proxy-Location': 'EU',
             'X-RapidAPI-Key': '6b49fcc796mshda9dbfb4b6db834p11282cjsn01eacaf68cac',
             'X-RapidAPI-Host': 'google-search3.p.rapidapi.com'
-        })
+        },
+        });
 
         const data = await response.json();
+
+        console.log(data);
 
         setResults(data);
         setIsLoading(false);
